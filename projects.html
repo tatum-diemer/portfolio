@@ -51,7 +51,7 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr); /* Ensure three columns */
             gap: 2rem;
             margin-top: 2rem;
         }
@@ -122,7 +122,7 @@
 
         @media (max-width: 768px) {
             .projects-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stack cards on smaller screens */
             }
         }
     </style>
@@ -154,8 +154,39 @@
                 </div>
             </article>
 
-            <!-- Add more project cards as needed -->
-            
+            <article class="project-card">
+                <img src="/api/placeholder/600/400" alt="Project 2" class="project-image">
+                <div class="project-content">
+                    <h2>Project Name</h2>
+                    <p>Description of your project and what technologies you used...</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Project</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="/api/placeholder/600/400" alt="Project 3" class="project-image">
+                <div class="project-content">
+                    <h2>Project Name</h2>
+                    <p>Description of your project and what technologies you used...</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Project</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </article>
         </div>
     </div>
 </body>
