@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tatum Diemer | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -67,15 +68,17 @@
 
         .hero-content nav {
             display: flex;
+            flex-direction: column; /* Stack links vertically */
+            align-items: center; /* Center links horizontally */
             gap: 1.5rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
+            margin-top: 2rem; /* Add some space between text and links */
         }
 
         .hero-content nav a {
             color: #ddd;
             text-decoration: none;
             font-weight: 500;
+            font-size: 1.2rem; /* Slightly larger font for better visibility */
             transition: color 0.3s ease;
         }
 
@@ -94,8 +97,7 @@
             }
 
             .hero-content nav {
-                flex-direction: column;
-                gap: 0.5rem;
+                gap: 1rem; /* Adjust space between the stacked links */
             }
         }
     </style>
