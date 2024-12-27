@@ -105,7 +105,6 @@
             <button class="filter-button" data-filter="tableau">Tableau</button>
             <button class="filter-button" data-filter="regression">Regression</button>
             <button class="filter-button" data-filter="geospatial">Geospatial</button>
-            <button class="filter-button" id="clear-filters">Clear Filters</button>
         </div>
 
         <!-- Projects Grid -->
@@ -129,32 +128,22 @@
         // JavaScript for Filtering Logic
         const filterButtons = document.querySelectorAll('.filter-button');
         const projects = document.querySelectorAll('.project-card');
-        const clearButton = document.getElementById('clear-filters');
 
         let activeFilters = new Set();
 
         // Toggle Filter Activation
         filterButtons.forEach(button => {
-            if (button.id !== 'clear-filters') {
-                button.addEventListener('click', () => {
-                    const filter = button.getAttribute('data-filter');
-                    if (activeFilters.has(filter)) {
-                        activeFilters.delete(filter);
-                        button.classList.remove('active');
-                    } else {
-                        activeFilters.add(filter);
-                        button.classList.add('active');
-                    }
-                    applyFilters();
-                });
-            }
-        });
-
-        // Clear All Filters
-        clearButton.addEventListener('click', () => {
-            activeFilters.clear();
-            filterButtons.forEach(button => button.classList.remove('active'));
-            applyFilters();
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                if (activeFilters.has(filter)) {
+                    activeFilters.delete(filter);
+                    button.classList.remove('active');
+                } else {
+                    activeFilters.add(filter);
+                    button.classList.add('active');
+                }
+                applyFilters();
+            });
         });
 
         // Apply Filters
