@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Your Name</title>
+    <title>Projects | Tatum Diemer</title>
     <style>
         * {
             margin: 0;
@@ -22,27 +22,14 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem;
+            padding: 1rem;
             background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
+            justify-content: flex-end;
+            gap: 1.5rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #333;
-            text-decoration: none;
-        }
-
-        nav .nav-links {
-            display: flex;
-            gap: 2rem;
         }
 
         nav a {
@@ -57,106 +44,71 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 6rem 2rem 2rem;
+            padding: 5rem 1.5rem 1.5rem;
         }
 
-        .filters {
-            margin-bottom: 2rem;
+        .filter-container {
             display: flex;
             gap: 1rem;
-            flex-wrap: wrap;
+            margin-bottom: 2rem;
         }
 
-        .filter-button {
-            background: #f0f0f0;
+        .filter-btn {
+            background-color: #ddd;
+            color: #333;
+            border: none;
             padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.875rem;
-            color: #666;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
 
-        .filter-button:hover {
-            background: #e0e0e0;
+        .filter-btn:hover {
+            background-color: #bbb;
+        }
+
+        .filter-btn.selected {
+            background-color: #4CAF50;
+            color: white;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
-        .project-card {
+        .project-box {
             background: white;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .project-content {
             padding: 1.5rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .project-content h2 {
-            font-size: 1.5rem;
+        .project-box h3 {
             margin-bottom: 1rem;
             color: #111;
         }
 
-        .project-content p {
+        .project-box p {
+            margin-bottom: 1rem;
             color: #555;
-            margin-bottom: 1rem;
         }
 
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+        .project-box ul {
+            list-style: none;
         }
 
-        .tag {
-            background: #f0f0f0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: #666;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .project-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .project-links a:hover {
-            color: #666;
+        .project-box ul li {
+            margin-bottom: 0.5rem;
+            color: #777;
         }
 
         @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .filter-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -173,104 +125,89 @@
 
     <div class="container">
         <h1>My Projects</h1>
-
-        <!-- Filters Section -->
-        <div class="filters">
-            <button class="filter-button" onclick="filterProjects('python')">Python</button>
-            <button class="filter-button" onclick="filterProjects('sql')">SQL</button>
-            <button class="filter-button" onclick="filterProjects('tableau')">Tableau</button>
-            <button class="filter-button" onclick="filterProjects('regression')">Regression</button>
-            <button class="filter-button" onclick="filterProjects('geospatial')">Geospatial</button>
-            <button class="filter-button" onclick="clearFilters()">Clear Filters</button>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-container">
+            <button class="filter-btn" data-filter="data-analysis">Data Analysis</button>
+            <button class="filter-btn" data-filter="predictive-modeling">Predictive Modeling</button>
+            <button class="filter-btn" data-filter="data-visualization">Data Visualization</button>
+            <button class="filter-btn" data-filter="automation">Automation</button>
         </div>
 
         <!-- Projects Grid -->
         <div class="projects-grid">
-            <article class="project-card" data-tags="python, regression, sql">
-                <img src="/api/placeholder/600/400" alt="Customer Segmentation" class="project-image">
-                <div class="project-content">
-                    <h2>Customer Segmentation</h2>
-                    <p>Description of the Customer Segmentation project...</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Regression</span>
-                        <span class="tag">SQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">View Project</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </article>
+            <div class="project-box data-analysis">
+                <h3>Project 1: Data Analysis Project</h3>
+                <p>Description of the project, focused on data analysis.</p>
+                <ul>
+                    <li>Tools: Python, SQL</li>
+                    <li>Techniques: Regression Analysis, Data Cleaning</li>
+                </ul>
+            </div>
 
-            <article class="project-card" data-tags="tableau, sql">
-                <img src="/api/placeholder/600/400" alt="Financial Performance Dashboard" class="project-image">
-                <div class="project-content">
-                    <h2>Financial Performance Dashboard</h2>
-                    <p>Description of the Financial Performance Dashboard project...</p>
-                    <div class="project-tags">
-                        <span class="tag">Tableau</span>
-                        <span class="tag">SQL</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">View Project</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </article>
+            <div class="project-box predictive-modeling">
+                <h3>Project 2: Predictive Modeling Project</h3>
+                <p>Description of the project, focused on predictive modeling.</p>
+                <ul>
+                    <li>Tools: Python, Scikit-learn</li>
+                    <li>Techniques: Machine Learning, Time Series Forecasting</li>
+                </ul>
+            </div>
 
-            <article class="project-card" data-tags="python, regression">
-                <img src="/api/placeholder/600/400" alt="Sales Funnel Analysis" class="project-image">
-                <div class="project-content">
-                    <h2>Sales Funnel Analysis</h2>
-                    <p>Description of the Sales Funnel Analysis project...</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Regression</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">View Project</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </article>
+            <div class="project-box data-visualization">
+                <h3>Project 3: Data Visualization Project</h3>
+                <p>Description of the project, focused on creating visualizations.</p>
+                <ul>
+                    <li>Tools: Tableau, Power BI</li>
+                    <li>Techniques: Data Dashboards, Interactive Visualizations</li>
+                </ul>
+            </div>
 
-            <article class="project-card" data-tags="python, sql, geospatial">
-                <img src="/api/placeholder/600/400" alt="Geospatial Sales Analysis" class="project-image">
-                <div class="project-content">
-                    <h2>Geospatial Sales Analysis</h2>
-                    <p>Description of the Geospatial Sales Analysis project...</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">SQL</span>
-                        <span class="tag">Geospatial</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">View Project</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </article>
+            <div class="project-box automation">
+                <h3>Project 4: Automation Project</h3>
+                <p>Description of the project, focused on automating processes.</p>
+                <ul>
+                    <li>Tools: Python, Selenium</li>
+                    <li>Techniques: Web Scraping, Task Automation</li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <script>
-        function filterProjects(tag) {
-            const projects = document.querySelectorAll('.project-card');
-            projects.forEach(project => {
-                if (project.getAttribute('data-tags').includes(tag)) {
-                    project.style.display = 'block';
+        // Select all filter buttons and project boxes
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectBoxes = document.querySelectorAll('.project-box');
+
+        // Add event listener to each filter button
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Toggle the 'selected' class to highlight the clicked filter
+                button.classList.toggle('selected');
+
+                // Get the filter data attribute
+                const filter = button.getAttribute('data-filter');
+
+                // Filter projects based on the selected filters
+                filterProjects(filter);
+            });
+        });
+
+        // Filter projects based on the selected filter
+        function filterProjects(filter) {
+            projectBoxes.forEach(box => {
+                // If the project box matches the filter or no filter is selected, show it
+                if (box.classList.contains(filter) || !hasSelectedFilter()) {
+                    box.style.display = 'block';
                 } else {
-                    project.style.display = 'none';
+                    box.style.display = 'none';
                 }
             });
         }
 
-        function clearFilters() {
-            const projects = document.querySelectorAll('.project-card');
-            projects.forEach(project => {
-                project.style.display = 'block';
-            });
+        // Check if there are any selected filters
+        function hasSelectedFilter() {
+            return Array.from(filterButtons).some(button => button.classList.contains('selected'));
         }
     </script>
 </body>
