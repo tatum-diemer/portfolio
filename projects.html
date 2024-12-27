@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Your Name</title>
     <style>
+        /* Your existing CSS remains the same */
         * {
             margin: 0;
             padding: 0;
@@ -47,6 +48,24 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 6rem 2rem 2rem;
+        }
+
+        .filter-buttons {
+            margin-bottom: 2rem;
+        }
+
+        .filter-buttons button {
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filter-buttons button:hover {
+            background-color: #ddd;
         }
 
         .projects-grid {
@@ -136,16 +155,26 @@
 
     <div class="container">
         <h1>My Projects</h1>
+        <!-- Filter buttons for the user to select tags -->
+        <div class="filter-buttons">
+            <button onclick="filterProjects('SQL')">SQL</button>
+            <button onclick="filterProjects('Python')">Python</button>
+            <button onclick="filterProjects('Tableau')">Tableau</button>
+            <button onclick="filterProjects('Regression')">Regression</button>
+            <button onclick="filterProjects('Geospatial')">Geospatial</button>
+            <button onclick="filterProjects('All')">Show All</button>
+        </div>
+
         <div class="projects-grid">
-            <article class="project-card">
-                <img src="/api/placeholder/600/400" alt="Project 1" class="project-image">
+            <article class="project-card" data-tags="SQL, Python, Regression">
+                <img src="/api/placeholder/600/400" alt="Customer Segmentation" class="project-image">
                 <div class="project-content">
-                    <h2>Project Name</h2>
-                    <p>Description of your project and what technologies you used...</p>
+                    <h2>Customer Segmentation</h2>
+                    <p>Segmenting customers based on purchasing behavior using clustering techniques.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Regression</span>
                     </div>
                     <div class="project-links">
                         <a href="#">View Project</a>
@@ -154,15 +183,15 @@
                 </div>
             </article>
 
-            <article class="project-card">
-                <img src="/api/placeholder/600/400" alt="Project 2" class="project-image">
+            <article class="project-card" data-tags="Tableau, Python, Regression">
+                <img src="/api/placeholder/600/400" alt="Financial Performance Dashboard" class="project-image">
                 <div class="project-content">
-                    <h2>Project Name</h2>
-                    <p>Description of your project and what technologies you used...</p>
+                    <h2>Financial Performance Dashboard</h2>
+                    <p>Analyzing financial data and visualizing KPIs using Tableau and Python.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Regression</span>
                     </div>
                     <div class="project-links">
                         <a href="#">View Project</a>
@@ -171,15 +200,31 @@
                 </div>
             </article>
 
-            <article class="project-card">
-                <img src="/api/placeholder/600/400" alt="Project 3" class="project-image">
+            <article class="project-card" data-tags="SQL, Python, Geospatial">
+                <img src="/api/placeholder/600/400" alt="Sales Funnel Analysis" class="project-image">
                 <div class="project-content">
-                    <h2>Project Name</h2>
-                    <p>Description of your project and what technologies you used...</p>
+                    <h2>Sales Funnel Analysis</h2>
+                    <p>Analyzing and optimizing the sales funnel using regression analysis and geospatial data.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Geospatial</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Project</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card" data-tags="Geospatial, SQL">
+                <img src="/api/placeholder/600/400" alt="Geospatial Sales Analysis" class="project-image">
+                <div class="project-content">
+                    <h2>Geospatial Sales Analysis</h2>
+                    <p>Analyzing sales performance across regions using geospatial analysis and SQL queries.</p>
+                    <div class="project-tags">
+                        <span class="tag">Geospatial</span>
+                        <span class="tag">SQL</span>
                     </div>
                     <div class="project-links">
                         <a href="#">View Project</a>
@@ -189,5 +234,19 @@
             </article>
         </div>
     </div>
+
+    <script>
+        function filterProjects(tag) {
+            const projects = document.querySelectorAll('.project-card');
+            projects.forEach(project => {
+                const projectTags = project.getAttribute('data-tags').split(', ');
+                if (tag === 'All' || projectTags.includes(tag)) {
+                    project.style.display = 'block';
+                } else {
+                    project.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
