@@ -259,20 +259,28 @@
         </div>
     </div>
 
-    <script>
-        // Function to filter projects based on selected tags
-        function filterProjects(tag) {
-            const projects = document.querySelectorAll('.project-card');
-            const filters = document.querySelectorAll('.filter-button');
-            
-            // Toggle active state on the filter button
-            const filterButton = document.querySelector(`.filter-button.${tag}`);
-            filterButton.classList.toggle('active');
+   <script>
+    // Function to filter projects based on selected tags
+    function filterProjects(tag) {
+        const projects = document.querySelectorAll('.project-card');
+        const filters = document.querySelectorAll('.filter-button');
 
-            const activeFilters = Array.from(filters)
-                .filter(button => button.classList.contains('active'))
-                .map(button => button.textContent.trim().toLowerCase());
+        // Toggle active state on the filter button
+        const filterButton = document.querySelector(`.filter-button.${tag}`);
+        filterButton.classList.toggle('active');
 
+        // Get all active filters
+        const activeFilters = Array.from(filters)
+            .filter(button => button.classList.contains('active'))
+            .map(button => button.textContent.trim().toLowerCase());
+
+        // Show or hide projects based on filters
+        projects.forEach(project => {
+            const projectTags = project.getAttribute('data-tags').split(', ');
+            const isVisible = activeFilters.every(filter => projectTags.includes(filter));
+            project.style.display = isVisible ? 'block' : 'none';
+        });
+    }
             // Filter projects based on active tags
             projects.forEach(project => {
                 const projectTags = project.getAttribute('data-tags').split(', ');
