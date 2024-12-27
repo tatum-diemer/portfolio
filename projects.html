@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Your Name</title>
     <style>
-        /* Your existing CSS remains the same */
         * {
             margin: 0;
             padding: 0;
@@ -28,9 +27,22 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; /* Ensures name is left, and links are right */
+            align-items: center;
             gap: 2rem;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         nav a {
@@ -48,24 +60,6 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 6rem 2rem 2rem;
-        }
-
-        .filter-buttons {
-            margin-bottom: 2rem;
-        }
-
-        .filter-buttons button {
-            padding: 0.5rem 1rem;
-            margin-right: 1rem;
-            background-color: #f0f0f0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .filter-buttons button:hover {
-            background-color: #ddd;
         }
 
         .projects-grid {
@@ -148,33 +142,26 @@
 </head>
 <body>
     <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="projects.html">Projects</a>
+        <a href="index.html" class="logo">Your Name</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+        </div>
     </nav>
 
     <div class="container">
-        <h1>Projects</h1>
-        <!-- Filter buttons for the user to select tags -->
-        <div class="filter-buttons">
-            <button onclick="filterProjects('All')">Show All</button>
-            <button onclick="filterProjects('Python')">Python</button>
-            <button onclick="filterProjects('Tableau')">Tableau</button>
-            <button onclick="filterProjects('Regression')">Regression</button>
-            <button onclick="filterProjects('Geospatial')">Geospatial</button>
-            <button onclick="filterProjects('SQL')">SQL</button>
-        </div>
-
+        <h1>My Projects</h1>
         <div class="projects-grid">
-            <article class="project-card" data-tags="SQL, Python, Regression">
+            <article class="project-card">
                 <img src="/api/placeholder/600/400" alt="Customer Segmentation" class="project-image">
                 <div class="project-content">
                     <h2>Customer Segmentation</h2>
-                    <p>Segmenting customers based on purchasing behavior using clustering techniques.</p>
+                    <p>Description of the Customer Segmentation project...</p>
                     <div class="project-tags">
-                        <span class="tag">SQL</span>
                         <span class="tag">Python</span>
                         <span class="tag">Regression</span>
+                        <span class="tag">SQL</span>
                     </div>
                     <div class="project-links">
                         <a href="#">View Project</a>
@@ -183,13 +170,28 @@
                 </div>
             </article>
 
-            <article class="project-card" data-tags="Tableau, Python, Regression">
+            <article class="project-card">
                 <img src="/api/placeholder/600/400" alt="Financial Performance Dashboard" class="project-image">
                 <div class="project-content">
                     <h2>Financial Performance Dashboard</h2>
-                    <p>Analyzing financial data and visualizing KPIs using Tableau and Python.</p>
+                    <p>Description of the Financial Performance Dashboard project...</p>
                     <div class="project-tags">
                         <span class="tag">Tableau</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#">View Project</a>
+                        <a href="#">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="project-card">
+                <img src="/api/placeholder/600/400" alt="Sales Funnel Analysis" class="project-image">
+                <div class="project-content">
+                    <h2>Sales Funnel Analysis</h2>
+                    <p>Description of the Sales Funnel Analysis project...</p>
+                    <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Regression</span>
                     </div>
@@ -200,31 +202,15 @@
                 </div>
             </article>
 
-            <article class="project-card" data-tags="SQL, Python, Geospatial">
-                <img src="/api/placeholder/600/400" alt="Sales Funnel Analysis" class="project-image">
-                <div class="project-content">
-                    <h2>Sales Funnel Analysis</h2>
-                    <p>Analyzing and optimizing the sales funnel using regression analysis and geospatial data.</p>
-                    <div class="project-tags">
-                        <span class="tag">SQL</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">Geospatial</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="#">View Project</a>
-                        <a href="#">GitHub</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="project-card" data-tags="Geospatial, SQL">
+            <article class="project-card">
                 <img src="/api/placeholder/600/400" alt="Geospatial Sales Analysis" class="project-image">
                 <div class="project-content">
                     <h2>Geospatial Sales Analysis</h2>
-                    <p>Analyzing sales performance across regions using geospatial analysis and SQL queries.</p>
+                    <p>Description of the Geospatial Sales Analysis project...</p>
                     <div class="project-tags">
-                        <span class="tag">Geospatial</span>
+                        <span class="tag">Python</span>
                         <span class="tag">SQL</span>
+                        <span class="tag">Geospatial</span>
                     </div>
                     <div class="project-links">
                         <a href="#">View Project</a>
@@ -234,19 +220,5 @@
             </article>
         </div>
     </div>
-
-    <script>
-        function filterProjects(tag) {
-            const projects = document.querySelectorAll('.project-card');
-            projects.forEach(project => {
-                const projectTags = project.getAttribute('data-tags').split(', ');
-                if (tag === 'All' || projectTags.includes(tag)) {
-                    project.style.display = 'block';
-                } else {
-                    project.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
