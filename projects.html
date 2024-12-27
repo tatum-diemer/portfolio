@@ -70,22 +70,22 @@
         }
 
         .filter-button {
-            background: #f0f0f0;
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.875rem;
-            color: #666;
+            color: #fff;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
-        .filter-button:hover {
-            background: #e0e0e0;
-        }
+        .filter-button.python { background-color: #4CAF50; }
+        .filter-button.sql { background-color: #2196F3; }
+        .filter-button.tableau { background-color: #FF9800; }
+        .filter-button.regression { background-color: #9C27B0; }
+        .filter-button.geospatial { background-color: #3F51B5; }
 
         .filter-button.active {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #333; /* Darken the color when active */
         }
 
         .projects-grid {
@@ -181,11 +181,11 @@
 
         <!-- Filters Section -->
         <div class="filters">
-            <button class="filter-button" onclick="filterProjects('python', this)">Python</button>
-            <button class="filter-button" onclick="filterProjects('sql', this)">SQL</button>
-            <button class="filter-button" onclick="filterProjects('tableau', this)">Tableau</button>
-            <button class="filter-button" onclick="filterProjects('regression', this)">Regression</button>
-            <button class="filter-button" onclick="filterProjects('geospatial', this)">Geospatial</button>
+            <button class="filter-button python" onclick="filterProjects('python')">Python</button>
+            <button class="filter-button sql" onclick="filterProjects('sql')">SQL</button>
+            <button class="filter-button tableau" onclick="filterProjects('tableau')">Tableau</button>
+            <button class="filter-button regression" onclick="filterProjects('regression')">Regression</button>
+            <button class="filter-button geospatial" onclick="filterProjects('geospatial')">Geospatial</button>
             <button class="filter-button" onclick="clearFilters()">Clear Filters</button>
         </div>
 
@@ -260,18 +260,21 @@
     </div>
 
     <script>
-        function filterProjects(tag, button) {
+        // Function to filter projects based on selected tags
+        function filterProjects(tag) {
             const projects = document.querySelectorAll('.project-card');
-            const buttons = document.querySelectorAll('.filter-button');
+            const filters = document.querySelectorAll('.filter-button');
+            
+            // Toggle active state on the filter button
+            const filterButton = document.querySelector(`.filter-button.${tag}`);
+            filterButton.classList.toggle('active');
 
-            // Remove active class from all buttons
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // Add active class to the clicked button
-            button.classList.add('active');
-
+            // Filter projects based on selected tags
             projects.forEach(project => {
-                if (project.getAttribute('data-tags').includes(tag)) {
+                const projectTags = project.getAttribute('data-tags').split(', ');
+                const isVisible = filterButton.classList.contains('active') && projectTags.includes(tag);
+                
+                if (isVisible) {
                     project.style.display = 'block';
                 } else {
                     project.style.display = 'none';
@@ -279,13 +282,15 @@
             });
         }
 
+        // Clear all filters and show all projects
         function clearFilters() {
             const projects = document.querySelectorAll('.project-card');
-            const buttons = document.querySelectorAll('.filter-button');
-
-            // Remove active class from all buttons
-            buttons.forEach(btn => btn.classList.remove('active'));
-
+            const filters = document.querySelectorAll('.filter-button');
+            
+            // Reset active states on all filter buttons
+            filters.forEach(button => button.classList.remove('active'));
+            
+            // Show all projects
             projects.forEach(project => {
                 project.style.display = 'block';
             });
