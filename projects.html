@@ -83,6 +83,11 @@
             background: #e0e0e0;
         }
 
+        .filter-button.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -176,11 +181,11 @@
 
         <!-- Filters Section -->
         <div class="filters">
-            <button class="filter-button" onclick="filterProjects('python')">Python</button>
-            <button class="filter-button" onclick="filterProjects('sql')">SQL</button>
-            <button class="filter-button" onclick="filterProjects('tableau')">Tableau</button>
-            <button class="filter-button" onclick="filterProjects('regression')">Regression</button>
-            <button class="filter-button" onclick="filterProjects('geospatial')">Geospatial</button>
+            <button class="filter-button" onclick="filterProjects('python', this)">Python</button>
+            <button class="filter-button" onclick="filterProjects('sql', this)">SQL</button>
+            <button class="filter-button" onclick="filterProjects('tableau', this)">Tableau</button>
+            <button class="filter-button" onclick="filterProjects('regression', this)">Regression</button>
+            <button class="filter-button" onclick="filterProjects('geospatial', this)">Geospatial</button>
             <button class="filter-button" onclick="clearFilters()">Clear Filters</button>
         </div>
 
@@ -255,8 +260,16 @@
     </div>
 
     <script>
-        function filterProjects(tag) {
+        function filterProjects(tag, button) {
             const projects = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-button');
+
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Add active class to the clicked button
+            button.classList.add('active');
+
             projects.forEach(project => {
                 if (project.getAttribute('data-tags').includes(tag)) {
                     project.style.display = 'block';
@@ -268,6 +281,11 @@
 
         function clearFilters() {
             const projects = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-button');
+
+            // Remove active class from all buttons
+            buttons.forEach(btn => btn.classList.remove('active'));
+
             projects.forEach(project => {
                 project.style.display = 'block';
             });
