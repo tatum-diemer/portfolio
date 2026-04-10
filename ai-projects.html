@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects — Tatum Diemer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav class="nav scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__link">About Me</a>
+      <a href="ai-projects.html" class="nav__link" style="color: var(--black); border-bottom-color: var(--black);">Projects</a>
+    </div>
+  </nav>
+
+  <div class="ai-page">
+    <p class="ai-page__label">Coming Soon</p>
+    <h1 class="ai-page__title">Building<br>in public.</h1>
+    <p class="ai-page__sub">Projects, experiments, and notes from going zero to one with AI. Check back soon.</p>
+  </div>
+
+  <footer class="footer">
+    <p class="footer__copy">© 2026 Tatum Diemer</p>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  </script>
+</body>
+</html>
